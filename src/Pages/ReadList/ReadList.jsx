@@ -41,29 +41,41 @@ const ReadList = () => {
         </TabList>
 
         <TabPanel>
-            <div className="flex justify-between items-center">
-                <div className="">
+            {
+                readList.length > 0 ? (
+                    <>
+                        <div className="flex justify-between items-center">
+                            <div className="">
 
-                </div>
-                <div className="">
-                    <h2 className="text-3xl font-semibold text-center mt-5">📚 Your Read Books....</h2>
-                </div>
+                            </div>
+                            <div className="">
+                                <h2 className="text-3xl font-semibold text-center mt-5">📚 Your Read Books....</h2>
+                            </div>
 
-                <div className="dropdown dropdown-end"> 
-                    <label tabIndex={0} role="button" className="btn m-1">Click Here Sort {sortType && `by : ${sortType}` } ⬇️</label>
-                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                        <li onClick={()=>handleSort('Rating')} className="text-black"><a>Sort By Rating</a></li>
-                        <li onClick={()=>handleSort('Page Number')} className="text-black"><a>Sort by Page Number</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-5 pb-10 md:px-10 justify-items-center gap-y-10 mt-10">
-                {
-                    readList.map((book, index)=> {
-                        return <ReadListBook key={index} book={book}></ReadListBook>
-                    })
-                }
-            </div>
+                            <div className="dropdown dropdown-end"> 
+                                <label tabIndex={0} role="button" className="btn m-1">Click Here Sort {sortType && `by : ${sortType}` } ⬇️</label>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <li onClick={()=>handleSort('Rating')} className="text-black"><a>Sort By Rating</a></li>
+                                    <li onClick={()=>handleSort('Page Number')} className="text-black"><a>Sort by Page Number</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-5 pb-10 md:px-10 justify-items-center gap-y-10 mt-10">
+                            {
+                                readList.map((book, index)=> {
+                                    return <ReadListBook key={index} book={book}></ReadListBook>
+                                })
+                            }
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="h-[55vh] flex justify-center items-center">
+                            <h1 className="text-4xl text-red-500"> <span className="flex justify-center items-center gap-6"><PiEmptyBold /> Not Book added Yet</span></h1>
+                        </div>
+                    </>
+                )
+            }
         </TabPanel>
         <TabPanel>
             <div className="h-[55vh] flex justify-center items-center">
